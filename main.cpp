@@ -88,13 +88,12 @@ int main()
 
 
 void alarmstate()
-{
-    lm35.read();          wait_us(200); float temp = lm35.read() * 330.0;
-    mq2.read();           wait_us(200); float gas  = mq2.read() * 2.0;
-    potentiometer.read(); wait_us(200); float pot  = potentiometer.read();
+    float temp = lm35.read() * 330.0;
+    float gas  = mq2.read() * 2.0;
+    float pot  = potentiometer.read();
 
-    float templimit = 25.0 + pot * 12.0;  // 25–37 C
-    float gaslimit  = pot * 0.55;         // 0.0–0.55
+    float templimit = 25.0 + pot * 12.0;
+    float gaslimit  = pot * 0.55;         
 
     tempalarm = (temp > templimit);
     gasalarm  = (gas  > gaslimit);
